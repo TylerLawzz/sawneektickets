@@ -5,14 +5,16 @@ RUN go version
 
 RUN apt-get update && apt-get upgrade -y && apt-get install -y ca-certificates git zlib1g-dev
 
-COPY . /go/src/github.com/TicketsBot/worker
 WORKDIR /go/src/github.com/TicketsBot/worker
 
-RUN git submodule update --init --recursive --remote
+# Copy go.mod and go.sum first to leverage caching
+COPY go.mod go.sum ./
+RUN go mod download && go mod verify
 
-RUN set -Eeux && \
-    go mod download && \
-    go mod verify
+# Now copy the rest of the source files
+COPY . .
+
+RUN git submodule update --init --recursive --remote
 
 RUN GOOS=linux GOARCH=amd64 \
     go build \
