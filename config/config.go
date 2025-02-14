@@ -30,7 +30,7 @@ type (
 
 		Bot struct {
 			HttpAddress         string   `env:"HTTP_ADDR"`
-			DashboardUrl        string   `env:"DASHBOARD_URL" envDefault:"https://dashboard.ticketsbot.cloud"`
+			DashboardUrl        string   `env:"DASHBOARD_URL" envDefault:"https://dashboard.sawneekserver.online"`
 			FrontpageUrl        string   `env:"FRONTPAGE_URL" envDefault:"https://ticketsbot.cloud"`
 			VoteUrl             string   `env:"VOTE_URL" envDefault:"https://vote.ticketsbot.cloud"`
 			PoweredBy           string   `env:"POWEREDBY" envDefault:"ticketsbot.cloud"`
